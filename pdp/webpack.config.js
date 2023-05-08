@@ -46,8 +46,11 @@ module.exports = (_, argv) => ({
       remotes: {
         home: "home@http://localhost:3000/remoteEntry.js",
         helloVue: "helloVue@http://localhost:3002/remoteEntry.js",
+        pdp: "pdp@http://localhost:3001/remoteEntry.js",
       },
-      exposes: {},
+      exposes: {
+        "./storeReducer": "./src/storeReducer",
+      },
       shared: {
         ...deps,
         react: {

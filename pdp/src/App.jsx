@@ -1,18 +1,30 @@
-import React, { Suspense, useEffect, useRef } from "react";
+import React, {
+  Suspense,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import ReactDOM from "react-dom";
 import Footer from "home/Footer";
 import Header from "home/Header";
-import VueApp from "./VueApp";
 
 import "./index.scss";
 import SafeComponent from "./SafeComponent";
 import { mountButton } from "helloVue/Button";
+import {
+  useCounterContext,
+  ContextProvider,
+  StateContext,
+} from "pdp/storeReducer";
 
 // const Header = React.lazy(() => import("home/Header"));
 
 const App = () => {
-  console.log(VueApp, Header);
   const ref = useRef(null);
+  const [count, setCount] = useState(0);
+
+  const { state, dispatch } = useCounterContext();
 
   useEffect(() => {
     mountButton(ref.current);
@@ -23,11 +35,21 @@ const App = () => {
       <SafeComponent>
         <Header app={{ name: "pdp" }} />
       </SafeComponent>
-      <div className="text-bold mx-auto">PDP Body</div>
+      <div className="text-bold mx-auto">PDP Body Count : {state?.count}</div>
       <Footer />
-      <VueApp />
-      <button ref={ref}></button>
+      <button
+        style={{ backgroundColor: "gray", padding: "10px" }}
+        onClick={() => dispatch({ type: "INCREMENT" })}
+        ref={ref}
+      >
+        Increase
+      </button>
     </div>
   );
 };
-ReactDOM.render(<App />, document.getElementById("app"));
+ReactDOM.render(
+  <ContextProvider>
+    <App />
+  </ContextProvider>,
+  document.getElementById("app")
+);

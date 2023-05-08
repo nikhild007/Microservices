@@ -60,7 +60,9 @@ module.exports = (_, argv) => ({
     new ModuleFederationPlugin({
       name: "helloVue",
       filename: "remoteEntry.js",
-      remotes: {},
+      remotes: {
+        pdp: "pdp@http://localhost:3001/remoteEntry.js",
+      },
       exposes: {
         "./Button": "./src/bootloader",
       },

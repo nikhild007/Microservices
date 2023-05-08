@@ -1,5 +1,5 @@
 <template>
   <div id="buttonid">
-    <button>App button</button>
+    <button style="background-color: grey; padding: 10px">Increase</button>
   </div>
 </template>
