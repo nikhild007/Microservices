@@ -17,6 +17,7 @@ import {
   ContextProvider,
   StateContext,
 } from "pdp/storeReducer";
+import VueApp from "./VueApp";
 
 // const Header = React.lazy(() => import("home/Header"));
 
@@ -37,13 +38,12 @@ const App = () => {
       </SafeComponent>
       <div className="text-bold mx-auto">PDP Body Count : {state?.count}</div>
       <Footer />
+      {/* <VueApp /> */}
       <button
         style={{ backgroundColor: "gray", padding: "10px" }}
         onClick={() => dispatch({ type: "INCREMENT" })}
         ref={ref}
-      >
-        Increase
-      </button>
+      ></button>
     </div>
   );
 };

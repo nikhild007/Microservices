@@ -50,6 +50,7 @@ module.exports = (_, argv) => ({
       },
       exposes: {
         "./storeReducer": "./src/storeReducer",
+        "./globalEvent": "./src/globalEvent",
       },
       shared: {
         ...deps,
